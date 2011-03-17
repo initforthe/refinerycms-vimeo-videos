@@ -1,0 +1,21 @@
+nb:
+  plugins:
+    vimeo_videos:
+      title: Vimeo Videos
+  admin:
+    vimeo_videos:
+      actions:
+        create_new: Lag en ny Vimeo Video
+        reorder: Endre rekkefølgen på Vimeo Videos
+        reorder_done: Ferdig å endre rekkefølgen Vimeo Videos
+      records:
+        title: Vimeo Videos
+        sorry_no_results: Beklager! Vi fant ikke noen resultater.
+        no_items_yet: Det er ingen Vimeo Videos enda. Klikk på "Lag en ny Vimeo Video" for å legge til din første vimeo video.
+      vimeo_video:
+        view_live_html: Vis hvordan denne vimeo video ser ut offentlig <br/><em>(åpner i et nytt vindu)</em>
+        edit: Rediger denne vimeo video
+        delete: Fjern denne vimeo video permanent
+  vimeo_videos:
+    show:
+      other: Andre Vimeo Videos

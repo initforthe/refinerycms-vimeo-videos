@@ -1,0 +1,31 @@
+en:
+  shared:
+    admin:
+      vimeo_video_picker:
+        vimeo_video: vimeo_video
+      vimeo_picker:
+        vimeo_video: vimeo_video
+        none_selected: There is currently no video selected, please click here to add one.
+  plugins:
+    vimeo_videos:
+      title: Vimeo Videos
+  admin:
+    vimeo_videos:
+      actions:
+        create_new: Add New Vimeo Video
+        reorder: Reorder Vimeo Videos
+        reorder_done: Done Reordering Vimeo Videos
+      records:
+        title: Vimeo Videos
+        sorry_no_results: Sorry! There are no results found.
+        no_items_yet: There are no Vimeo Videos yet. Click "Add New Vimeo Video" to add your first vimeo video.
+      vimeo_video:
+        view_live_html: View this vimeo video live <br/><em>(opens in a new window)</em>
+        edit: Edit this vimeo video
+        delete: Remove this vimeo video forever
+      existing_vimeo_video:
+        button_text: Save
+  vimeo_videos:
+    show:
+      other: Other Vimeo Videos
+      i18n: en.admin.vimeo_videos.existing_vimeo_video.button_text

@@ -1,0 +1,25 @@
+lolcat:
+  shared:
+    admin:
+      vimeo_video_picker:
+        vimeo_video: IMAGE
+  plugins:
+    vimeo_videos:
+      title: Vimeo Videos
+  admin:
+    vimeo_videos:
+      actions:
+        create_new: CREATE NEW Vimeo Video
+        reorder: REORDR Vimeo Videos
+        reorder_done: DUN REORDERIN Vimeo Videos
+      records:
+        title: Vimeo Videos
+        sorry_no_results: SRY! THAR R NO RESULTS FINDZ.
+        no_items_yet: THAR R NO Vimeo Videos YET. CLICK "CREATE NEW Vimeo Video" 2 ADD UR FURST vimeo video.
+      vimeo_video:
+        view_live_html: VIEW DIS vimeo video LIV <BR/><EM>(OPENS IN NEW WINDOW)</EM>
+        edit: EDIT DIS vimeo video
+        delete: REMOOV DIS vimeo video FOREVR
+  vimeo_videos:
+    show:
+      other: OTHR Vimeo Videos

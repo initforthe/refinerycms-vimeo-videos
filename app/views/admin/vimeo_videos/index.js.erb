@@ -1,0 +1,12 @@
+$('#vimeo_videos').html("<div class='vimeo_videos'/>");
+$('.vimeo_videos').hide().html("<%= escape_javascript(render(:partial => 'vimeo_video', :collection => @vimeo_videos)) %>").fadeIn();
+$('#vimeo_videos').after('<div id="vimeo_video_uids" style="display:none" />');
+init_tooltips();
+<% if params[:vimeo_videos] %>
+  <% for vimeo_video in @vimeo_videos do %>
+    $('#vimeo_video_uids').append('<input data-destroy-vimeo-video-id="<%= vimeo_video["vimeo_video_uid"] %>" name="project[vimeo_videos_attributes][<%= vimeo_video["uid"] %>][_destroy]" type="hidden" value=0 />');
+    $('#vimeo_video_uids').append('<input name="project[vimeo_videos_attributes][<%= vimeo_video["uid"] %>][vimeo_video_uid]" type="hidden" value="<%= vimeo_video["vimeo_video_uid"] %>" />');
+    $('#vimeo_video_uids').append('<input name="project[vimeo_videos_attributes][<%= vimeo_video["uid"] %>][uid]" type="hidden" value="<%= vimeo_video["uid"] %>" />');
+  <% end %>
+<% end %>
+$('form .vimeo_videos img').vimeo();
