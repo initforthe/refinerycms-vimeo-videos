@@ -2,7 +2,6 @@ class CreateVimeoVideos < ActiveRecord::Migration
 
   def self.up
     create_table :vimeo_videos do |t|
-      t.string :title
       t.string :vimeo_video_uid
       t.string :vimeo_video_name
       t.integer :position
