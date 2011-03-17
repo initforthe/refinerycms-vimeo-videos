@@ -1,4 +1,5 @@
 *.gemspec
+*.gem
 
 # rcov generated
 coverage
