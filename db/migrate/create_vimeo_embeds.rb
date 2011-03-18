@@ -2,13 +2,13 @@ class CreateVimeoEmbeds < ActiveRecord::Migration
 
   def self.up
     create_table :vimeo_embeds do |t|
-      t.integer :vimeo_id
+      t.integer :vid
       t.string :code
-      t.string :options
+      t.text :configuration
       t.timestamps
     end
     
-    add_index :vimeo_embeds, [:vimeo_id, :options]
+    add_index :vimeo_embeds, [:vid, :configuration]
   end
 
   def self.down

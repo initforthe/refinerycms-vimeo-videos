@@ -2,7 +2,7 @@ class CreateVimeoVideos < ActiveRecord::Migration
 
   def self.up
     create_table :vimeo_videos do |t|
-      t.strng :attachable_type
+      t.string :attachable_type
       t.integer :attachable_id
       t.string :vid, :unique => true
       

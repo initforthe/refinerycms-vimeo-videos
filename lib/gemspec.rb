@@ -4,14 +4,12 @@ gempath = Pathname.new(File.expand_path('../../', __FILE__))
 
 files = %w( Gemfile *.md **/**/{*,.rspec,.gitignore,.yardopts} ).map { |file| Pathname.glob(file) }.flatten
 rejection_patterns = [
-  "^(authentication|base|core|dashboard|images|pages|resources|settings|testing)",
   "^public/system",
   "^config/(application|boot|environment).rb$",
   "^config/initializers(\/.*\.rb)?$",
   "^config/(database|i18n\-js).yml$",
   "^lib\/gemspec\.rb",
   ".*\/cache\/",
-  "^db(\/)?",
   "^script\/*",
   "^vendor\/plugins\/?$",
   "(^log|\.log)$",
@@ -30,7 +28,7 @@ gemspec = <<EOF
 
 Gem::Specification.new do |s|
   s.name              = %q{#{gemname = 'moxiecms-vimeo-videos'}}
-  s.version           = '0.1.0'
+  s.version           = '0.1.1'
   s.description       = 'Ruby on Rails Vimeo Videos engine for Moxie CMS'
   s.date              = %q{#{Time.now.strftime('%Y-%m-%d')}}
   s.summary           = 'Vimeo Videos engine for Moxie CMS'
