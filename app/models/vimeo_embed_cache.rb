@@ -1,10 +1,12 @@
 require 'httparty'
 
-class VimeoEmbed < ActiveRecord::Base
+class VimeoEmbedCache < ActiveRecord::Base
+  
+  set_table_name "vimeo_embed_cache"
   
   belongs_to :vimeo_video
     
-  before_save :update_embed_code
+  before_save :cache
   
   serialize :configuration, Hash
     
@@ -48,7 +50,7 @@ class VimeoEmbed < ActiveRecord::Base
       "<iframe src=\"http://player.vimeo.com/video/#{vid}?portrait=0\" width=\"#{width}\" height=\"#{height}\" frameborder=\"0\"></iframe>"
     end
   
-    def update_embed_code force = false
+    def cache force = false
       if self.code.blank? or force  
         # Escape vimeo url and request oembed code
         url = CGI::escape("http://vimeo.com/#{self.vid}")

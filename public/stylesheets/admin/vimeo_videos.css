@@ -1,0 +1,59 @@
+.dialog #existing_vimeo_video_area_content {
+  margin-top: 28px;
+}
+.dialog #existing_vimeo_video_area_content ul {
+  margin: 0px;
+  padding: 0px;
+}
+.dialog #existing_vimeo_video_area_content ul li {
+  list-style: none;
+  padding: 0px;
+  margin: 0px 2px 0px 0px;
+  float: left;
+  height: 114px;
+  max-height: 114px;
+  width: 114px;
+  max-width: 114px;
+  overflow: hidden;
+  cursor: pointer;
+  text-align: center;
+  vertical-align: middle;
+}
+.dialog #existing_vimeo_video_area_content ul li img {
+  border: 4px solid transparent;
+}
+.dialog #existing_vimeo_video_area_content ul li.selected img {
+  border: 4px solid #22A7F2;
+}
+.dialog #existing_vimeo_video_size_area {
+  margin-top: 18px;
+}
+.dialog #existing_vimeo_video_size_area ul {
+  margin: 0px;
+  padding: 10px 0px 0px 0px;
+}
+.dialog #existing_vimeo_video_size_area ul li {
+  float: left;
+  list-style: none;
+  margin: 0px 18px 0px 0px;
+  text-align:center;
+}
+.dialog #existing_vimeo_video_size_area ul li.selected {
+
+}
+.dialog #existing_vimeo_video_size_area ul li a {
+  display: block;
+  border: 1px solid #999999;
+  font-size: 10px;
+  /* The following default values are overridden below */
+	height: 90px;
+	width: 90px;
+	line-height: 90px;
+	margin-top:-20px
+}
+.dialog #existing_vimeo_video_size_area ul li.selected a {
+  border-color: #22A7F2;
+  background: #22A7F2;
+  color: white;
+  font-weight: bold;
+}

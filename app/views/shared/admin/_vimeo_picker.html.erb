@@ -1,0 +1,59 @@
+<%
+  description ||= 'vimeo_video'
+  thumbnail ||= 'medium'
+  toggle_vimeo_video_display ||= false
+  randomiser = rand(Time.now.yesterday.to_i * Time.now.to_i)
+  current_vimeo_video_link_href = insert_admin_vimeo_videos_url(:dialog => true, :callback => "vimeo_video_picker_#{randomiser}_changed",
+                                                    :width => 866, :height => 510)
+  current_vimeo_video_title = t('.change', :what =>  description.titleize)
+-%>
+<div id='vimeo_video_picker_container_<%= randomiser %>'>
+  <%= link_to t('.show'), '', :class => "current_vimeo_video_toggler" if toggle_vimeo_video_display %>
+  <%= f.hidden_field field, :class => "current_vimeo_video_id" -%>
+
+  <div class='current_vimeo_video_container'<%= " style='display: none'" if toggle_vimeo_video_display %> style="margin-top: 10px;">
+    <a class='current_vimeo_video_link dialog' href="<%= current_vimeo_video_link_href %>" style='border: 0px' title='<%= current_vimeo_video_title  %>' name='<%= current_vimeo_video_title %>'>
+      <% unless vimeo_video.nil? -%>
+        <%= image_fu vimeo_video.image, ::Image.user_image_sizes[thumbnail.to_sym], :class => "brown_border",
+                     :class => "current_picked_vimeo_video" %>
+      <% else -%>
+        <img class="current_picked_vimeo_video" src="" alt="" style='display: none' />
+      <% end -%>
+      <span class='no_picked_vimeo_video_selected nothing_selected' <%= "style='display: none;'" if vimeo_video.present? %>>
+        <%= t('.none_selected', :what => t('.' + description )) %>
+      </span>
+    </a>
+    <br/>
+    <%= link_to t('.remove_current', :what => t('.' + description )), "#",
+                :class => "remove_picked_vimeo_video",
+                :style => "#{"display:none;" if vimeo_video.nil?}" %>
+  </div>
+</div>
+
+<% content_for :javascripts do -%>
+  <script>
+  var vimeo_video_picker_<%= randomiser %> = null;
+    $(document).ready(function(e) {
+      vimeo_video_picker_<%= randomiser %> = vimeo_video_picker.init({
+        thumbnail: '<%= thumbnail.html_safe %>'
+        , vimeo_video_toggler: '<%= toggle_vimeo_video_display ? ".current_vimeo_video_toggler" : "null" %>'
+        , description: '<%= description %>'
+        , field: '.current_vimeo_video_id'
+        , vimeo_video_display: '.current_picked_vimeo_video'
+        , no_vimeo_video_message: '.no_picked_vimeo_video_selected'
+        , remove_vimeo_video_button: '.remove_picked_vimeo_video'
+        , picker_container: '#vimeo_video_picker_container_<%= randomiser %>'
+        , vimeo_video_container: '.current_vimeo_video_container'
+        , vimeo_video_link: '.current_vimeo_video_link'
+      });
+    });
+
+    vimeo_video_picker_<%= randomiser %>_changed = function(args){
+      $.proxy(vimeo_video_picker_<%= randomiser %>.changed, {
+        container: '#vimeo_video_picker_container_<%= randomiser %>'
+        , picker: vimeo_video_picker_<%= randomiser %>
+        , vimeo_video: args
+      })();
+    };
+  </script>
+<% end %>

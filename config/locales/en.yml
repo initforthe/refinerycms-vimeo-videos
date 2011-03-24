@@ -4,13 +4,22 @@ en:
       vimeo_video_picker:
         vimeo_video: vimeo_video
       vimeo_picker:
+        no_vimeo_video_selected: There is currently no video selected, please click here to add one.
+        name: Insert a video from your account
         vimeo_video: vimeo_video
         none_selected: There is currently no video selected, please click here to add one.
+        remove_current: Remove current video
+        change: Change video
   plugins:
     vimeo_videos:
       title: Vimeo Videos
   admin:
     vimeo_videos:
+      form:
+        maximum_file_size: Maximale Dateigröße ist %{megabytes} Megabytes.
+      insert:
+        existing: Von account
+        new: Neues Video
       actions:
         create_new: Add New Vimeo Video
         reorder: Reorder Vimeo Videos

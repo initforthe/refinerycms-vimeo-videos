@@ -1,0 +1,35 @@
+<div id='existing_vimeo_video_area' class='dialog_area' <%= "style='display:none;'" if @vimeo_video.errors.any? %>>
+  <input type='hidden' name='selected_vimeo_video' id='selected_vimeo_video' />
+  <div id='existing_vimeo_video_area_content' class='clearfix'>
+    <div id='vimeos_list'>
+      <ul>
+        <% @vimeo_videos.each do |vimeo_video| -%>
+          <li<%= " class='selected'" if @vimeo_video_id == false %>>
+            <%= image_tag vimeo_video["thumbnails"]["thumbnail"].first["_content"], {
+                  :tooltip => vimeo_video["title"],
+                  :alt => vimeo_video["title"],
+                  :title => vimeo_video["title"],
+                  :"data-image" => vimeo_video["thumbnails"]["thumbnail"][1]["_content"],
+                  :id => "vimeo_video_#{vimeo_video['id']}",
+                  :"data-id" => vimeo_video["id"]} %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+  <%= render :partial => "/shared/admin/form_actions",
+             :locals => {
+               :f => nil,
+               :cancel_url => '',
+               :submit_button_text => t('.button_text'),
+               :hide_submit => @vimeo_videos.empty?,
+               :hide_cancel => false,
+               :hide_delete => true,
+               :cancel_title => nil,
+               :paginate => {
+                 :collection => @vimeo_videos,
+                 :url => {:controller => "/admin/vimeo_videos", :action => "insert", :dialog => from_dialog? }
+               }
+             } if @app_dialog or @vimeo_videos.any? %>
+</div>

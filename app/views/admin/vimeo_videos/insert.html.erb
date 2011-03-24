@@ -1,0 +1,60 @@
+<% content_for :stylesheets do %>
+  <%= stylesheet_link_tag "admin/vimeo_videos" %>
+<% end %>
+<% content_for :javascripts do %>
+  <%= javascript_include_tag "moxie/vimeo_videos" %>
+<% end %>
+
+<% user_can_modify_vimeo_videos = Moxie::Plugins.active.names.include?("vimeo_videos") %>
+<div class='clearfix'>
+  <div id='dialog_menu_left'>
+    <% if (any_vimeo_videos = @vimeo_videos.any?) %>
+      <span id='existing_vimeo_video_radio' class='radio<%= " selected_radio" if @vimeo_video.errors.empty? %>'>
+        <input type='radio' name='vimeo_video_type' value='existing_vimeo_video' id='vimeo_video_type_existing' <%= "checked='true'" if @vimeo_video.errors.empty? %> />
+        <label for='vimeo_video_type_existing' class='stripped'>
+          <%= t('.existing') %>
+        </label>
+      </span>
+    <% end %>
+    <% if user_can_modify_vimeo_videos %>
+      <span id='upload_vimeo_video_radio' class='radio<%= " selected_radio" if @vimeo_video.errors.any? or @vimeo_videos.empty? %>'>
+        <input type='radio' name='vimeo_video_type' value='upload_vimeo_video' id='vimeo_video_type_upload' <%= "checked='true'" if @vimeo_videos.empty? or @vimeo_video.errors.any? %> />
+        <label for='vimeo_video_type_upload' class='stripped'>
+          <%= t('.new') %>
+        </label>
+      </span>
+    <% end %>
+  </div>
+
+  <div id='dialog_main'>
+    <% if any_vimeo_videos or user_can_modify_vimeo_videos %>
+      <%= render :partial => 'existing_vimeo_video' if any_vimeo_videos %>
+
+      <% if user_can_modify_vimeo_videos %>
+        <div id='upload_vimeo_video_area' class='dialog_area' <%= "style='display:none;'" if any_vimeo_videos and @vimeo_video.errors.empty? %>>
+          <%= render :partial => "form", :locals => {:insert => true} %>
+        </div>
+      <% end %>
+    <% else %>
+      <% flash.now[:error] = t('.no_files') %>
+      <%= render :partial => "/shared/admin/form_actions",
+                 :locals => {
+                   :f => nil,
+                   :cancel_url => '',
+                   :hide_cancel => false,
+                   :hide_delete => true,
+                   :hide_submit => true,
+                   :cancel_button_text => t('close', :scope => 'shared.admin.form_actions'),
+                   :cancel_title => nil
+                 } %>
+    <% end %>
+  </div>
+</div>
+
+<% content_for :javascripts do %>
+  <script>
+    $(document).ready(function(){
+      vimeo_video_dialog.init(<%= @callback.present? ? "self.parent.#{@callback}" : "null" %>);
+    });
+  </script>
+<% end %>
