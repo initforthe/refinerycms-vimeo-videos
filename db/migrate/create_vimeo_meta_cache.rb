@@ -10,7 +10,7 @@ class CreateVimeoMetaCache < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :vimeo_meta_cache, :vid
+    add_index :vimeo_meta_cache, [:vid]
 
     load(Rails.root.join('db', 'seeds', 'vimeo_videos.rb'))
   end

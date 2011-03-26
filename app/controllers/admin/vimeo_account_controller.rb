@@ -10,7 +10,7 @@ module Admin
         session[:oauth_secret] = request_token.secret
         redirect_to base.authorize_url
       elsif ready_to_authorize?
-        vimeo_callback
+        callback
       else
         raise ArgumentError, 'Not ready to authorize. Type in consumer_key and consumer_secret.'
       end

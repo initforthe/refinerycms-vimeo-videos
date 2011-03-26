@@ -8,7 +8,7 @@ class CreateVimeoEmbedCache < ActiveRecord::Migration
       t.timestamps
     end
     
-    add_index :vimeo_embed_cache, [:vid, :configuration]
+    add_index :vimeo_embed_cache, [:vid]
   end
 
   def self.down
