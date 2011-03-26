@@ -28,7 +28,7 @@ gemspec = <<EOF
 
 Gem::Specification.new do |s|
   s.name              = %q{#{gemname = 'refinerycms-vimeo-videos'}}
-  s.version           = '0.1.1'
+  s.version           = '0.1.2'
   s.description       = 'Ruby on Rails Vimeo Videos engine for Refinery CMS'
   s.date              = %q{#{Time.now.strftime('%Y-%m-%d')}}
   s.summary           = 'Vimeo Videos engine for Refinery CMS'
