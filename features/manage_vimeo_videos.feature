@@ -5,7 +5,7 @@ Feature: Vimeo Videos
   I want to manage vimeo_videos
 
   Background:
-    Given I am a logged in moxie user
+    Given I am a logged in refinery user
     And I have no vimeo_videos
 
   @vimeo_videos-list @list

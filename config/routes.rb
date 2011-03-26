@@ -1,4 +1,4 @@
-Moxie::Application.routes.draw do
+Refinery::Application.routes.draw do
   scope(:path => 'admin', :as => 'admin', :module => 'admin') do
     resources :vimeo_videos, :except => :show do
       collection do

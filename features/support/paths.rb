@@ -1,5 +1,5 @@
 module NavigationHelpers
-  module Moxie
+  module Refinery
     module VimeoVideos
       def path_to(page_name)
         case page_name

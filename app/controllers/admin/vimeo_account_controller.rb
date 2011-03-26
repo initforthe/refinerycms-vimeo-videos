@@ -21,8 +21,8 @@ module Admin
         @account[:consumer_key],
         @account[:consumer_secret])
       access_token = base.get_access_token(params[:oauth_token], session[:oauth_secret], params[:oauth_verifier])
-      MoxieSetting.find_by_name('vimeo_token').update_attribute(:value, access_token.token)
-      MoxieSetting.find_by_name('vimeo_secret').update_attribute(:value, access_token.secret)
+      RefinerySetting.find_by_name('vimeo_token').update_attribute(:value, access_token.token)
+      RefinerySetting.find_by_name('vimeo_secret').update_attribute(:value, access_token.secret)
       flash[:notice] = "You successfully authorized your vimeo account for integration in your backend. You can now start using it."
       redirect_to '/admin'
     end
