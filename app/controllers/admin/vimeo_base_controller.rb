@@ -29,11 +29,11 @@ module Admin
       
       def get_account
         @account = {
-          :username => RefinerySetting.find_or_set('vimeo_username', :value => "Username"),
-          :consumer_key => RefinerySetting.find_by_name('vimeo_consumer_key').value,
-          :consumer_secret => RefinerySetting.find_by_name('vimeo_consumer_secret').value,
-          :token => RefinerySetting.find_by_name('vimeo_token').value,
-          :secret => RefinerySetting.find_by_name('vimeo_secret').value}
+          :username => RefinerySetting.find_or_set(:vimeo_username, :value => "Username"),
+          :consumer_key => RefinerySetting.find_or_set(:vimeo_consumer_key, :value => "Consumer Key"),
+          :consumer_secret => RefinerySetting.find_or_set(:vimeo_consumer_secret, :value => "Consumer Secret"),
+          :token => RefinerySetting.find_or_set(:vimeo_token, :value => 'Token').value,
+          :secret => RefinerySetting.find_or_set(:vimeo_secret, :value => 'Secret').value}
       end
 
   end

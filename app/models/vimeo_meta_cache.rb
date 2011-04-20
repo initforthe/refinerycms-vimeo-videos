@@ -3,7 +3,7 @@ class VimeoMetaCache < ActiveRecord::Base
   
   set_table_name "vimeo_meta_cache"
   
-  has_many :vimeo_video_embed_caches, :dependent => :destroy
+  has_many :vimeo_embed_caches, :dependent => :destroy
   
   belongs_to :image, :class_name => 'Image'
   
@@ -45,12 +45,13 @@ class VimeoMetaCache < ActiveRecord::Base
       end
     end
     
+    
     def get_account
       @account = {
-        :username => RefinerySetting.find_or_set('vimeo_username', :value => "Username"),
-        :consumer_key => RefinerySetting.find_by_name('vimeo_consumer_key').value,
-        :consumer_secret => RefinerySetting.find_by_name('vimeo_consumer_secret').value,
-        :token => RefinerySetting.find_by_name('vimeo_token').value,
-        :secret => RefinerySetting.find_by_name('vimeo_secret').value}
+        :username => RefinerySetting.find_or_set(:vimeo_username, :value => "Username"),
+        :consumer_key => RefinerySetting.find_or_set(:vimeo_consumer_key, :value => "Consumer Key"),
+        :consumer_secret => RefinerySetting.find_or_set(:vimeo_consumer_secret, :value => "Consumer Secret"),
+        :token => RefinerySetting.find_or_set(:vimeo_token, :value => 'Token').value,
+        :secret => RefinerySetting.find_or_set(:vimeo_secret, :value => 'Secret').value}
     end
 end
