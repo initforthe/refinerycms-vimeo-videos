@@ -32,8 +32,8 @@ module Admin
           :username => RefinerySetting.find_or_set(:vimeo_username, :value => "Username"),
           :consumer_key => RefinerySetting.find_or_set(:vimeo_consumer_key, :value => "Consumer Key"),
           :consumer_secret => RefinerySetting.find_or_set(:vimeo_consumer_secret, :value => "Consumer Secret"),
-          :token => RefinerySetting.find_or_set(:vimeo_token, :value => 'Token').value,
-          :secret => RefinerySetting.find_or_set(:vimeo_secret, :value => 'Secret').value}
+          :token => RefinerySetting.find_or_set(:vimeo_token, :value => 'Token'),
+          :secret => RefinerySetting.find_or_set(:vimeo_secret, :value => 'Secret')}
       end
 
   end
