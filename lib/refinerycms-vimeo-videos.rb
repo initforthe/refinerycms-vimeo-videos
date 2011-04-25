@@ -2,6 +2,8 @@ require 'refinerycms-base'
 require 'vimeo'
 
 require 'refinerycms_vimeo_videos/account'
+require 'refinerycms_vimeo_videos/active_record_extension'
+require 'refinerycms_vimeo_videos/url_tempfile'
 
 module Refinery
   module VimeoVideos

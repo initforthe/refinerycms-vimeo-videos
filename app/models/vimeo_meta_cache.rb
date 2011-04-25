@@ -13,7 +13,7 @@ class VimeoMetaCache < ActiveRecord::Base
   validates_presence_of :vid
   
   def embed geometry, options = {}
-    VimeoEmbedCache.embed(self.vid, geometry, options).code
+    VimeoEmbedCache.embed(self.vid, geometry, options)
   end
   
   def url
@@ -30,12 +30,13 @@ class VimeoMetaCache < ActiveRecord::Base
     def cache force = false, images = false
       if !self.title? or !self.image_id? or !self.description? or force
         
-        video = Vimeo::Advanced::Video.new(
+        video_info_request = Vimeo::Advanced::Video.new(
           account[:consumer_key],
           account[:consumer_secret],
           :token => account[:token],
           :secret => account[:secret])
-        video_info = video.get_info(self.vid)["video"].first
+        
+        video_info = video_info_request.get_info(self.vid)["video"].first
         
         # By default omitt image if we already have one.
         # If we force an update, we need to specifically force images as well by
@@ -44,7 +45,7 @@ class VimeoMetaCache < ActiveRecord::Base
         if images or !image_id?
           # Save fetched image url
           vimeo_thumb_url = video_info["thumbnails"]["thumbnail"].last["_content"]
-          self.create_image(:image => URLTempfile.new(vimeo_thumb_url))
+          self.create_image(:image => RefinerycmsVimeoVideos::URLTempfile.new(vimeo_thumb_url))
         end
         
         # Save fetched title

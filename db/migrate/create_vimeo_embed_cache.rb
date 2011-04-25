@@ -2,7 +2,7 @@ class CreateVimeoEmbedCache < ActiveRecord::Migration
 
   def self.up
     create_table :vimeo_embed_cache do |t|
-      t.integer :vid
+      t.string :vid
       t.string :code
       t.text :configuration
       t.timestamps

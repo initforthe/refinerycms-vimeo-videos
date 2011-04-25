@@ -1,4 +1,6 @@
 require 'fakeweb'
+require 'erb'
+require 'ostruct'
 
 FakeWeb.allow_net_connect = false
 
@@ -9,6 +11,14 @@ def fixture_file(filename)
   return '' if filename == ''
   file_path = File.expand_path(File.dirname(__FILE__) + '/fixtures/' + filename)
   File.read(file_path)
+end
+
+def erb_fixture_file(filename, vars)
+  return '' if filename == ''
+    
+  av = ActionView::Base.new(File.expand_path(File.dirname(__FILE__) + '/fixtures/'))
+  av.assign({:vars => vars})
+  av.render(:template => filename)
 end
 
 def vimeo_base_url(url = "/")
@@ -47,8 +57,10 @@ end
 def stub_vimeo_embed_uri(geometry)
   geometry_hash = VimeoEmbedCache.geometry_hash(geometry)
   
+  vars = OpenStruct.new :geometry => geometry
+  
   FakeWeb.register_uri( :get,
                         "http://vimeo.com/api/oembed.xml?url=http%3A%2F%2Fvimeo.com%2F123456&#{geometry_hash.to_query}",
-                        :body => fixture_file("oembed/oembed.json"),
+                        :body => erb_fixture_file("oembed/oembed.json.erb", geometry),
                         :content_type => 'application/json' )
 end

@@ -20,9 +20,9 @@ class VimeoEmbedCache < ActiveRecord::Base
     static = configuration.delete("static") if configuration.has_key?("static")
     if static
       geometry =~ FIXED_GEOMETRY ?
-        static_embed_code(vid, geometry) : raise(ArgumentError, "Must use fixed geometry string for static embeds (e.g. 100x240)")
+        static_embed_code(vid, geometry).html_safe : raise(ArgumentError, "Must use fixed geometry string for static embeds (e.g. 100x240)")
     else
-      find_or_create_by_vid_and_configuration(vid, :configuration => YAML.dump(configuration))
+      find_or_create_by_vid_and_configuration(vid, :configuration => YAML.dump(configuration)).code.html_safe
     end
   end
   

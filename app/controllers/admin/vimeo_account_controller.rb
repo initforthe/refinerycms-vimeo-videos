@@ -25,7 +25,8 @@ module Admin
       else
         
         # not ready to authorize
-        raise ArgumentError, 'Not ready to authorize. Type in consumer_key and consumer_secret.'
+        flash.alert = "You are not ready to authorize. Type in consumer_key and consumer_secret."
+        redirect_to "/admin"
       
       end
     end

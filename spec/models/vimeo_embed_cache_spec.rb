@@ -27,7 +27,7 @@ describe VimeoEmbedCache do
     end
     
     it "should allow static embedding only if width and height given" do
-      VimeoEmbedCache.embed(@valid_attributes[:vid], @valid_attributes[:geometry], :static => true).should_not == @vimeo_embed_cache.code
+      VimeoEmbedCache.embed(@valid_attributes[:vid], @valid_attributes[:geometry], :static => true).should_not == @vimeo_embed_cache
       lambda { VimeoEmbedCache.embed(@valid_attributes[:vid], '100', :static => true) }.should raise_error ArgumentError
     end
     
@@ -35,14 +35,22 @@ describe VimeoEmbedCache do
   
   context "caching" do
     
-    it "fetches embedding if it has no cache for parameters" do
+    it "should fetch embed code if it has no cache for parameters" do
       stub_vimeo_embed_uri '400x200'
       VimeoEmbedCache.embed(@valid_attributes[:vid], '400x200').should_not == @vimeo_embed_cache
-      VimeoEmbedCache.embed(@valid_attributes[:vid], '400x200').code == "Hello oembed world!"
+      VimeoEmbedCache.embed(@valid_attributes[:vid], '400x200') == "Hello oembed world 400x200"
     end
     
     it "should fetch video from cache" do
       VimeoEmbedCache.embed(@valid_attributes[:vid], @valid_attributes[:geometry]).should == @vimeo_embed_cache
+    end
+    
+    it "should override cache on update_cache" do
+      vec = VimeoEmbedCache.find_by_vid(123456)
+      vec.code = "Hello"
+      vec.save
+      vec.update_cache
+      vec.code.should_not == "Hello"
     end
     
   end

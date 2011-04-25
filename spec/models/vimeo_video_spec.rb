@@ -18,7 +18,6 @@ describe VimeoVideo do
 
   context "validations" do
     
-    
   end
 
 end
