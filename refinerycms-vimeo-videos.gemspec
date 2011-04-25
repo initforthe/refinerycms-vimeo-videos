@@ -72,7 +72,7 @@ Gem::Specification.new do |s|
     'lib/generators/refinerycms_vimeo_videos_generator.rb',
     'lib/refinerycms-vimeo-videos.rb',
     'lib/refinerycms_vimeo_videos',
-    'lib/refinerycms_vimeo_videos/base.rb',
+    'lib/refinerycms_vimeo_videos/account.rb',
     'lib/refinerycms_vimeo_videos/version.rb',
     'lib/tasks',
     'lib/tasks/vimeo_videos.rake',
