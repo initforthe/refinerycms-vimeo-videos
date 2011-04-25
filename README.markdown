@@ -50,6 +50,16 @@ In your _form.html.erb insert this:
 Now embed the video (with a width of 750px):
 
     <%= @project.test_video.embed '750' -%>
+    
+Invalidating Caches
+-------------------
+
+If you need to invalidate the whole cache, simply call delete\_all on VimeoEmbedCache and VimeoMetaCache.
+
+In case you want to just pull in changes, you can do:
+
+    VimeoEmbedCache.update_cache
+    VimeoMetaCache.update_cache
 
 TODO
 ----
