@@ -1,10 +1,10 @@
 module Admin
   class VimeoAccountController < Admin::BaseController
 
-    extend ::RefinerycmsVimeoVideos::Account
+    include ::RefinerycmsVimeoVideos::Account
     
     def authorization
-      
+      debugger
       if not authorized? and ready_to_authorize?
         
         # begin authorization process
@@ -13,6 +13,8 @@ module Admin
           account[:consumer_secret])
         request_token = base.get_request_token
         session[:oauth_secret] = request_token.secret
+        
+        debugger
         redirect_to base.authorize_url
         
       elsif ready_to_authorize?
@@ -30,7 +32,7 @@ module Admin
     end
   
     def callback
-      
+      debugger
       # vimeo will redirect us here upon successful authorization
       base = Vimeo::Advanced::Base.new(
         account[:consumer_key],
@@ -42,6 +44,11 @@ module Admin
       redirect_to '/admin'
     
     end
+    
+    protected
+    
+      def restrict_controller
+      end
 
   end
 end

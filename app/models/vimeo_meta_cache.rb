@@ -1,6 +1,6 @@
 class VimeoMetaCache < ActiveRecord::Base
   
-  extend ::RefinerycmsVimeoVideos::Account
+  include ::RefinerycmsVimeoVideos::Account
   
   set_table_name "vimeo_meta_cache"
   

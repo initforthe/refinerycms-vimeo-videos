@@ -1,7 +1,7 @@
 require 'refinerycms-base'
 require 'vimeo'
 
-require 'refinerycms_vimeo_videos/base'
+require 'refinerycms_vimeo_videos/account'
 
 module Refinery
   module VimeoVideos

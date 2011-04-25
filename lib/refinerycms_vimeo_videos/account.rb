@@ -5,10 +5,10 @@ module RefinerycmsVimeoVideos
     
     protected
       
-      CONSUMER_KEY_FORMAT = /[a-z0-9]{32}/
-      CONSUMER_SECRET_FORMAT = /[a-z0-9]{16}/
-      TOKEN_FORMAT = /[a-z0-9]{32}/
-      SECRET_FORMAT = /[a-z0-9]{40}/
+      CONSUMER_KEY_FORMAT = /^\w{32}$/
+      CONSUMER_SECRET_FORMAT = /^\w{16}$/
+      TOKEN_FORMAT = /^\w{32}$/
+      SECRET_FORMAT = /^\w{40}$/
     
       def ready_to_authorize?
         account[:consumer_key] =~ CONSUMER_KEY_FORMAT and account[:consumer_secret] =~ CONSUMER_SECRET_FORMAT
