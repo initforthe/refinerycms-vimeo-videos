@@ -4,7 +4,7 @@ require "refinerycms_vimeo_videos/version"
 
 Gem::Specification.new do |s|
   s.name              = %q{refinerycms-vimeo-videos}
-  s.version           = %q{0.1.6}
+  s.version           = %q{0.1.7}
   s.description       = 'Ruby on Rails Vimeo Videos engine for Refinery CMS'
   s.date              = %q{2011-04-25}
   s.summary           = 'Vimeo Videos engine for Refinery CMS'
@@ -66,6 +66,7 @@ Gem::Specification.new do |s|
     'features/step_definitions',
     'features/step_definitions/vimeo_video_steps.rb',
     'features/support',
+    'features/support/factories.rb',
     'features/support/paths.rb',
     'lib',
     'lib/generators',
@@ -73,6 +74,8 @@ Gem::Specification.new do |s|
     'lib/refinerycms-vimeo-videos.rb',
     'lib/refinerycms_vimeo_videos',
     'lib/refinerycms_vimeo_videos/account.rb',
+    'lib/refinerycms_vimeo_videos/active_record_extension.rb',
+    'lib/refinerycms_vimeo_videos/url_tempfile.rb',
     'lib/refinerycms_vimeo_videos/version.rb',
     'lib/tasks',
     'lib/tasks/vimeo_videos.rake',
@@ -190,7 +193,7 @@ Gem::Specification.new do |s|
     'spec/fixtures/advanced/video_embed/get_presets.json',
     'spec/fixtures/advanced/video_embed/set_preset.json',
     'spec/fixtures/oembed',
-    'spec/fixtures/oembed/oembed.json',
+    'spec/fixtures/oembed/oembed.json.erb',
     'spec/fixtures/simple',
     'spec/fixtures/simple/activity',
     'spec/fixtures/simple/activity/contacts_did.json',
@@ -223,9 +226,12 @@ Gem::Specification.new do |s|
     'spec/fixtures/simple/video',
     'spec/fixtures/simple/video/info.json',
     'spec/models',
+    'spec/models/active_record_extension_spec.rb',
     'spec/models/vimeo_embed_cache_spec.rb',
     'spec/models/vimeo_meta_cache_spec.rb',
     'spec/models/vimeo_video_spec.rb',
+    'spec/samples',
+    'spec/samples/taj.jpg',
     'spec/vimeo_helper.rb'
   ]
 end
