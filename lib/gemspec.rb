@@ -2,6 +2,9 @@
 require 'pathname'
 gempath = Pathname.new(File.expand_path('../../', __FILE__))
 
+$:.push File.expand_path("../lib", __FILE__)
+require "refinerycms_vimeo_videos/version"
+
 files = %w( Gemfile *.md **/**/{*,.rspec,.gitignore,.yardopts} ).map { |file| Pathname.glob(file) }.flatten
 rejection_patterns = [
   "^public/system",
@@ -30,7 +33,7 @@ require "refinerycms_vimeo_videos/version"
 
 Gem::Specification.new do |s|
   s.name              = %q{#{gemname = 'refinerycms-vimeo-videos'}}
-  s.version           = RefinerycmsVimeoVideos::VERSION
+  s.version           = %q{#{RefinerycmsVimeoVideos::VERSION}}
   s.description       = 'Ruby on Rails Vimeo Videos engine for Refinery CMS'
   s.date              = %q{#{Time.now.strftime('%Y-%m-%d')}}
   s.summary           = 'Vimeo Videos engine for Refinery CMS'
@@ -43,6 +46,7 @@ Gem::Specification.new do |s|
   
   s.add_dependency    'vimeo', '~> 1.3.0'
   s.add_dependency    'httparty', '~> 0.6.1'
+  s.add_dependency    'fakeweb', '~> 1.2.6'
   
   s.files             = [
     '#{files.sort.join("',\n    '")}'

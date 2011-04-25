@@ -18,14 +18,6 @@ describe VimeoVideo do
 
   context "validations" do
     
-    it "rejects empty title" do
-      VimeoVideo.new(@valid_attributes.merge(:title => "")).should_not be_valid
-    end
-
-    it "rejects non unique title" do
-      # as one gets created before each spec by reset_vimeo_video
-      VimeoVideo.new(@valid_attributes).should_not be_valid
-    end
     
   end
 

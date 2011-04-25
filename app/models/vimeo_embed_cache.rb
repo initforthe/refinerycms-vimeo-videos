@@ -26,6 +26,11 @@ class VimeoEmbedCache < ActiveRecord::Base
     end
   end
   
+  def update_cache
+    cache true
+    self.save
+  end
+  
   FIXED_WIDTH_GEOMETRY    = /^(\d+)$/ # e.g. '300'
   FIXED_HEIGHT_GEOMETRY   = /^x(\d+)$/ # e.g. 'x200'
   FIXED_GEOMETRY          = /^(\d+)x(\d+)$/ # e.g. '300x200'
@@ -39,7 +44,7 @@ class VimeoEmbedCache < ActiveRecord::Base
       {:height => $1}
     when FIXED_GEOMETRY
       {:width => $1, :height => $2}
-    else raise ArgumentError, "Didn't recognise the geometry string #{self.geometry}"
+    else raise ArgumentError, "Didn't recognise the geometry string #{geometry}"
     end
   end
     

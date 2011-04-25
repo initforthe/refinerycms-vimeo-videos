@@ -1,5 +1,6 @@
-require 'vimeo'
 class VimeoMetaCache < ActiveRecord::Base
+  
+  extend ::RefinerycmsVimeoVideos::Account
   
   set_table_name "vimeo_meta_cache"
   
@@ -19,39 +20,39 @@ class VimeoMetaCache < ActiveRecord::Base
     "http://www.vimeo.com/#{self.vid}"
   end
   
-  def force_cache
-    cache true
+  def update_cache image = false
+    cache true, images
     self.save
   end
   
   private
     
-    def cache force = false
-      if self.title.blank? or self.image_id.blank?
-        get_account
+    def cache force = false, images = false
+      if self.title.blank? or self.image_id.blank? or self.description.blank?
+        
         video = Vimeo::Advanced::Video.new(
-          @account[:consumer_key],
-          @account[:consumer_secret],
-          :token => @account[:token],
-          :secret => @account[:secret])
+          account[:consumer_key],
+          account[:consumer_secret],
+          :token => account[:token],
+          :secret => account[:secret])
         video_info = video.get_info(self.vid)["video"].first
         
-        # Save cached image
-        vimeo_thumb_url = video_info["thumbnails"]["thumbnail"].last["_content"]
-        self.create_image(:image => URLTempfile.new(vimeo_thumb_url)) if self.image_id.blank? or force
+        # By default omitt image if we already have one.
+        # If we force an update, we need to specifically force images as well by
+        # calling this method with force and images true.
         
-        # Save cached title
-        self.title = video_info["description"] if self.title.blank? or force
+        if (images and force) or not image_id?
+          # Save fetched image url
+          vimeo_thumb_url = video_info["thumbnails"]["thumbnail"].last["_content"]
+          self.create_image(:image => URLTempfile.new(vimeo_thumb_url))
+        end
+        
+        # Save fetched title
+        self.title = video_info["title"] if self.title.blank? or force
+        
+        # Save fetched description
+        self.description = video_info["description"] if self.description.blank? or force
       end
     end
     
-    
-    def get_account
-      @account = {
-        :username => RefinerySetting.find_or_set(:vimeo_username, :value => "Username"),
-        :consumer_key => RefinerySetting.find_or_set(:vimeo_consumer_key, :value => "Consumer Key"),
-        :consumer_secret => RefinerySetting.find_or_set(:vimeo_consumer_secret, :value => "Consumer Secret"),
-        :token => RefinerySetting.find_or_set(:vimeo_token, :value => 'Token').value,
-        :secret => RefinerySetting.find_or_set(:vimeo_secret, :value => 'Secret').value}
-    end
 end
