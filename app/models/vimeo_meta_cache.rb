@@ -20,7 +20,7 @@ class VimeoMetaCache < ActiveRecord::Base
     "http://www.vimeo.com/#{self.vid}"
   end
   
-  def update_cache image = false
+  def update_cache images = false
     cache true, images
     self.save
   end
@@ -28,7 +28,7 @@ class VimeoMetaCache < ActiveRecord::Base
   private
     
     def cache force = false, images = false
-      if self.title.blank? or self.image_id.blank? or self.description.blank?
+      if !self.title? or !self.image_id? or !self.description? or force
         
         video = Vimeo::Advanced::Video.new(
           account[:consumer_key],
@@ -41,17 +41,17 @@ class VimeoMetaCache < ActiveRecord::Base
         # If we force an update, we need to specifically force images as well by
         # calling this method with force and images true.
         
-        if (images and force) or not image_id?
+        if images or !image_id?
           # Save fetched image url
           vimeo_thumb_url = video_info["thumbnails"]["thumbnail"].last["_content"]
           self.create_image(:image => URLTempfile.new(vimeo_thumb_url))
         end
         
         # Save fetched title
-        self.title = video_info["title"] if self.title.blank? or force
+        self.title = video_info["title"] if !self.title? or force
         
         # Save fetched description
-        self.description = video_info["description"] if self.description.blank? or force
+        self.description = "<p>#{video_info['description']}</p>" if !self.description? or force
       end
     end
     

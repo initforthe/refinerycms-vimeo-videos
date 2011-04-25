@@ -4,7 +4,7 @@ require "refinerycms_vimeo_videos/version"
 
 Gem::Specification.new do |s|
   s.name              = %q{refinerycms-vimeo-videos}
-  s.version           = %q{0.1.5}
+  s.version           = %q{0.1.6}
   s.description       = 'Ruby on Rails Vimeo Videos engine for Refinery CMS'
   s.date              = %q{2011-04-25}
   s.summary           = 'Vimeo Videos engine for Refinery CMS'
