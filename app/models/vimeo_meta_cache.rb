@@ -1,6 +1,6 @@
 class VimeoMetaCache < ActiveRecord::Base
   
-  include ::RefinerycmsVimeoVideos::Account
+  include ::Refinery::VimeoVideos::Account
   
   set_table_name "vimeo_meta_cache"
   
@@ -45,7 +45,7 @@ class VimeoMetaCache < ActiveRecord::Base
         if images or !image_id?
           # Save fetched image url
           vimeo_thumb_url = video_info["thumbnails"]["thumbnail"].last["_content"]
-          self.create_image(:image => RefinerycmsVimeoVideos::URLTempfile.new(vimeo_thumb_url))
+          self.create_image(:image => ::Refinery::VimeoVideos::URLTempfile.new(vimeo_thumb_url))
         end
         
         # Save fetched title

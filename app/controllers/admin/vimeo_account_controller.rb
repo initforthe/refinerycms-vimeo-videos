@@ -1,7 +1,7 @@
 module Admin
   class VimeoAccountController < Admin::BaseController
 
-    include ::RefinerycmsVimeoVideos::Account
+    include ::Refinery::VimeoVideos::Account
     
     def authorization
       
@@ -20,13 +20,13 @@ module Admin
         
         # already authorized
         flash.notice = "You have already authorized your account."
-        redirect_to "/admin"
+        redirect_to refinery_root_path
         
       else
         
         # not ready to authorize
         flash.alert = "You are not ready to authorize. Type in consumer_key and consumer_secret."
-        redirect_to "/admin"
+        redirect_to refinery_root_path
       
       end
     end
@@ -41,7 +41,7 @@ module Admin
       RefinerySetting.find_by_name('vimeo_token').update_attribute(:value, access_token.token)
       RefinerySetting.find_by_name('vimeo_secret').update_attribute(:value, access_token.secret)
       flash.notice = "You successfully authorized your vimeo account for integration in your backend. You can now start using it."
-      redirect_to '/admin'
+      redirect_to refinery_root_path
     
     end
     

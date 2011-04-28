@@ -14,6 +14,7 @@ module Refinery
       
       config.after_initialize do
         Refinery::Plugin.register do |plugin|
+          plugin.version = Refinery::VimeoVideos::VERSION
           plugin.name = "vimeo_videos"
           plugin.hide_from_menu = true
         end

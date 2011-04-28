@@ -1,7 +1,7 @@
 module Admin
   class VimeoVideosController < Admin::BaseController
     
-    include ::RefinerycmsVimeoVideos::Account
+    include ::Refinery::VimeoVideos::Account
     
     before_filter :init_dialog
     

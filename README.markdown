@@ -17,11 +17,11 @@ Run the generator and migrate your database
 
 Create an api-application for your vimeo account under http://vimeo.com/api/applications with a callback url of
 
-    http://yourapp.com/admin/vimeo_videos/callback
+    http://yourapp.com/refinery/vimeo_videos/callback
 
 Copy/paste the consumer\_key and consumer\_secret of your vimeo api-application to the related Refinery Settings (:vimeo\_consumer\_key and :vimeo\_consumer\_secret). Then access the following url:
 
-    http://yourapp.com/admin/vimeo_videos/authorization
+    http://yourapp.com/refinery/vimeo_videos/authorization
     
 After this, your app should be setup to use your vimeo account.
 

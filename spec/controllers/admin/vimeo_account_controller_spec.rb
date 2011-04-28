@@ -41,7 +41,7 @@ describe Admin::VimeoAccountController do
     response.should redirect_to('http://vimeo.com/oauth/authorize?permission=delete&oauth_token=12345')
   end
   
-  it "should redirect to /admin if already authorized" do
+  it "should redirect to /refinery if already authorized" do
     RefinerySetting.set(:vimeo_consumer_key, '0fdb4f200cc52ae06cd3dfa74e680feb')
     RefinerySetting.set(:vimeo_consumer_secret, 'e6cdebf36a8cdd6b')
     RefinerySetting.set(:vimeo_token, '0ea53d3415ce2c60625ddc649730e1b9')
@@ -49,8 +49,17 @@ describe Admin::VimeoAccountController do
     
     get :authorization
 
-    response.should redirect_to('/admin')
+    response.should redirect_to(refinery_root_path)
     flash[:notice].should_not == nil
   end
+  
+  #it "should successfully authorize on callback" do
+  #  RefinerySetting.set(:vimeo_consumer_key, '0fdb4f200cc52ae06cd3dfa74e680feb')
+  #  RefinerySetting.set(:vimeo_consumer_secret, 'e6cdebf36a8cdd6b')
+  #  
+  #  #stub_custom_get("/oauth/access_token", "advanced/auth/access_token.txt")
+  #  
+  #  get :callback, {:oauth_token => "12345", :oauth_token_secret => "secret", :oauth_verifier => "asdf"}
+  #end
   
 end
