@@ -1,5 +1,5 @@
 $:.push File.expand_path("../lib", __FILE__)
-require "refinerycms_vimeo_videos/version"
+require "refinerycms-vimeo-videos/version"
 
 Gem::Specification.new do |s|
   s.name              = %q{refinerycms-vimeo-videos}

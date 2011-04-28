@@ -36,5 +36,3 @@ module Refinery
     end
   end
 end
-
-ActiveRecord::Base.class_eval { include Refinery::VimeoVideos::ActiveRecordExtension }
