@@ -8,7 +8,7 @@ module Admin
       if not authorized? and ready_to_authorize?
         
         # begin authorization process
-        base = Vimeo::Advanced::Base.new(
+        base = ::Vimeo::Advanced::Base.new(
           account[:consumer_key],
           account[:consumer_secret])
         request_token = base.get_request_token
@@ -34,7 +34,7 @@ module Admin
     def callback
       
       # vimeo will redirect us here upon successful authorization
-      base = Vimeo::Advanced::Base.new(
+      base = ::Vimeo::Advanced::Base.new(
         account[:consumer_key],
         account[:consumer_secret])
       access_token = base.get_access_token(params[:oauth_token], session[:oauth_secret], params[:oauth_verifier])

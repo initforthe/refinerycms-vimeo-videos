@@ -30,7 +30,7 @@ class VimeoMetaCache < ActiveRecord::Base
     def cache force = false, images = false
       if !self.title? or !self.image_id? or !self.description? or force
         
-        video_info_request = Vimeo::Advanced::Video.new(
+        video_info_request = ::Vimeo::Advanced::Video.new(
           account[:consumer_key],
           account[:consumer_secret],
           :token => account[:token],

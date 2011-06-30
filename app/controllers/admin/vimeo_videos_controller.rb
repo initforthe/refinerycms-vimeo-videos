@@ -39,7 +39,7 @@ module Admin
     
     protected
       def get_videos_on_vimeo_account
-        video = Vimeo::Advanced::Video.new(
+        video = ::Vimeo::Advanced::Video.new(
           account[:consumer_key],
           account[:consumer_secret],
           :token => account[:token],

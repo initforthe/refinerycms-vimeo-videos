@@ -27,6 +27,6 @@ require 'refinerycms-vimeo-videos/active_record.rb'
 
 module ActiveRecord
   class Base
-    extend Refinery::VimeoVideos::ActiveRecord
+    extend ::Refinery::VimeoVideos::ActiveRecord
   end
 end
