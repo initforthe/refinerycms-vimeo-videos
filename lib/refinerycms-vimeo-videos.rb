@@ -8,7 +8,7 @@ module Refinery
     autoload :Account,                'refinerycms-vimeo-videos/account.rb'
     
     class Engine < Rails::Engine
-      initializer 'serve static assets' do |app|
+      initializer 'vimeo_videos.serve_static_assets' do |app|
         app.middleware.insert_after ::ActionDispatch::Static, ::ActionDispatch::Static, "#{root}/public"
       end
             
