@@ -1,3 +1,4 @@
+require 'vimeo'
 require 'refinerycms-vimeo-videos/version'
 
 module Refinery
