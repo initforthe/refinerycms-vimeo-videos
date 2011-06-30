@@ -16,10 +16,10 @@ en:
   admin:
     vimeo_videos:
       form:
-        maximum_file_size: Maximale Dateigröße ist %{megabytes} Megabytes.
+        maximum_file_size: Maximum file size is %{megabytes} Megabytes.
       insert:
-        existing: Von account
-        new: Neues Video
+        existing: Vimeo account
+        new: Uplaad video
       actions:
         create_new: Add New Vimeo Video
         reorder: Reorder Vimeo Videos
@@ -37,4 +37,3 @@ en:
   vimeo_videos:
     show:
       other: Other Vimeo Videos
-      i18n: en.admin.vimeo_videos.existing_vimeo_video.button_text

@@ -1,0 +1,15 @@
+de:
+  shared:
+    admin:
+      vimeo_video_picker:
+        vimeo_video: vimeo_video
+      vimeo_picker:
+        no_vimeo_video_selected: Es ist kein Video ausgewählt, klicken Sie hier um eines hinzuzufügen.
+        name: Fügen Sie ein Video von Ihrem Vimeo Account hinzu.
+        vimeo_video: vimeo_video
+        none_selected: Es ist kein Video ausgewählt, klicken Sie hier um eines hinzuzufügen.
+        remove_current: Video entfernen.
+        change: Video ändern.
+  plugins:
+    vimeo_videos:
+      title: Vimeo Videos

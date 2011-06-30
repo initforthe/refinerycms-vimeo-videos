@@ -1,18 +1,14 @@
+class VimeoAuthorizationError < StandardError; end
 module Admin
   class VimeoVideosController < Admin::BaseController
     
     include ::Refinery::VimeoVideos::Account
     
+    before_filter :ensure_authorized!
     before_filter :init_dialog
     
     def index
-      if authorized?
-        get_videos_on_vimeo_account
-      elsif request.xhr?
-        render :text => 'You have not authorized this application to use your vimeo account.'
-      else
-        raise ArgumentError, 'You have not authorized this application to use your vimeo account.'
-      end
+      get_videos_on_vimeo_account
     end
     
     def new
@@ -71,6 +67,21 @@ module Admin
                                          :conditions => conditions,
                                          :order => 'created_at DESC',
                                          :per_page => VimeoVideo.per_page(from_dialog?)
+      end
+      
+      def ensure_authorized!
+        begin
+          
+          raise VimeoAuthorizationError unless authorized?
+        
+        rescue VimeoAuthorizationError => exception
+          
+          message = 'You have not authorized your vimeo account with this application.'
+          render :partial => 'error_message', :locals => {
+            :message => message
+          }
+          
+        end
       end
   end
 end
