@@ -12,7 +12,11 @@ class CreateVimeoVideos < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :vimeo_videos
+    [::VimeoVideo].reject{|m|
+      !(defined?(m) and m.respond_to?(:table_name))
+    }.each do |model|
+      drop_table model.table_name
+    end
   end
 
 end

@@ -16,11 +16,11 @@ class CreateVimeoMetaCache < ActiveRecord::Migration
   end
 
   def self.down
-    UserPlugin.destroy_all({:name => "vimeo_videos"})
-
-    Page.delete_all({:link_url => "/vimeo_videos"})
-
-    drop_table :vimeo_meta_cache
+    [::VimeoMetaCache].reject{|m|
+      !(defined?(m) and m.respond_to?(:table_name))
+    }.each do |model|
+      drop_table model.table_name
+    end
   end
 
 end

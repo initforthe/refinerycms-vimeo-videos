@@ -1,5 +1,5 @@
 module Refinery
   module VimeoVideos
-    VERSION = "0.1.9.rc3"
+    VERSION = "0.2.rc1"
   end
 end

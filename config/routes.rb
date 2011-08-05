@@ -1,5 +1,5 @@
 Refinery::Application.routes.draw do
-  scope(:path => 'refinery', :as => 'admin', :module => 'admin') do
+  scope(:module => 'admin', :path => 'refinery', :as => 'refinery_admin') do
     get 'vimeo_videos/authorization', :to => 'vimeo_account#authorization'
     get 'vimeo_videos/callback', :to => 'vimeo_account#callback'
     
