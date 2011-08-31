@@ -1,7 +1,7 @@
 class CreateVimeoEmbedCache < ActiveRecord::Migration
 
   def self.up
-    create_table :vimeo_embed_cache do |t|
+    create_table Refinery::VimeoEmbedCache do |t|
       t.string :vid
       t.string :code
       t.text :configuration

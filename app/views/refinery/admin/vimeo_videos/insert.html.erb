@@ -1,5 +1,5 @@
 <% content_for :stylesheets do %>
-  <%= stylesheet_link_tag "admin/vimeo_videos" %>
+  <%= stylesheet_link_tag "refinery/vimeo_videos" %>
 <% end %>
 <% content_for :javascripts do %>
   <%= javascript_include_tag "refinery/vimeo_videos" %>
@@ -37,7 +37,7 @@
       <% end %>
     <% else %>
       <% flash.now[:error] = t('.no_files') %>
-      <%= render :partial => "/shared/admin/form_actions",
+      <%= render :partial => "/refinery/admin/form_actions",
                  :locals => {
                    :f => nil,
                    :cancel_url => '',

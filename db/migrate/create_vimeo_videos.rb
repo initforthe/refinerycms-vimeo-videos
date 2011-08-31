@@ -1,7 +1,7 @@
 class CreateVimeoVideos < ActiveRecord::Migration
 
   def self.up
-    create_table :vimeo_videos do |t|
+    create_table Refinery::VimeoVideo.table_name do |t|
       t.string :vid, :unique => true
       t.string :title
       t.text :description

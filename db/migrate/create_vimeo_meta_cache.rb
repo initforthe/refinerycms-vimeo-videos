@@ -1,7 +1,7 @@
 class CreateVimeoMetaCache < ActiveRecord::Migration
 
   def self.up
-    create_table :vimeo_meta_cache do |t|
+    create_table Refinery::VimeoMetaCache do |t|
       t.string :vid, :unique => true
       t.string :title
       t.text :description

@@ -9,7 +9,7 @@ describe Admin::VimeoAccountController do
 
   def reset(options = {})
     FakeWeb.clean_registry
-    RefinerySetting.delete_all
+    ::Refinery::Setting.delete_all
     login_user
   end
   
@@ -31,8 +31,8 @@ describe Admin::VimeoAccountController do
   end
   
   it "should redirect if ready to authorize" do
-    RefinerySetting.set(:vimeo_consumer_key, '0fdb4f200cc52ae06cd3dfa74e680feb')
-    RefinerySetting.set(:vimeo_consumer_secret, 'e6cdebf36a8cdd6b')
+    ::Refinery::Setting.set(:vimeo_consumer_key, '0fdb4f200cc52ae06cd3dfa74e680feb')
+    ::Refinery::Setting.set(:vimeo_consumer_secret, 'e6cdebf36a8cdd6b')
     
     stub_custom_get("/oauth/request_token", "advanced/auth/request_token.txt")
     
@@ -42,10 +42,10 @@ describe Admin::VimeoAccountController do
   end
   
   it "should redirect to /refinery if already authorized" do
-    RefinerySetting.set(:vimeo_consumer_key, '0fdb4f200cc52ae06cd3dfa74e680feb')
-    RefinerySetting.set(:vimeo_consumer_secret, 'e6cdebf36a8cdd6b')
-    RefinerySetting.set(:vimeo_token, '0ea53d3415ce2c60625ddc649730e1b9')
-    RefinerySetting.set(:vimeo_secret, '97ce681f949aadb4e56e764b897a6e4463df0a7b')
+    ::Refinery::Setting.set(:vimeo_consumer_key, '0fdb4f200cc52ae06cd3dfa74e680feb')
+    ::Refinery::Setting.set(:vimeo_consumer_secret, 'e6cdebf36a8cdd6b')
+    ::Refinery::Setting.set(:vimeo_token, '0ea53d3415ce2c60625ddc649730e1b9')
+    ::Refinery::Setting.set(:vimeo_secret, '97ce681f949aadb4e56e764b897a6e4463df0a7b')
     
     get :authorization
 
@@ -54,8 +54,8 @@ describe Admin::VimeoAccountController do
   end
   
   #it "should successfully authorize on callback" do
-  #  RefinerySetting.set(:vimeo_consumer_key, '0fdb4f200cc52ae06cd3dfa74e680feb')
-  #  RefinerySetting.set(:vimeo_consumer_secret, 'e6cdebf36a8cdd6b')
+  #  ::Refinery::Setting.set(:vimeo_consumer_key, '0fdb4f200cc52ae06cd3dfa74e680feb')
+  #  ::Refinery::Setting.set(:vimeo_consumer_secret, 'e6cdebf36a8cdd6b')
   #  
   #  #stub_custom_get("/oauth/access_token", "advanced/auth/access_token.txt")
   #  

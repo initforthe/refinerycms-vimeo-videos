@@ -23,10 +23,10 @@ CreateModels.up
 describe "RefinerycmsVimeoVideos ActiveRecord extension" do
 
   before(:each) do
-    RefinerySetting.set(:vimeo_consumer_key, '12345')
-    RefinerySetting.set(:vimeo_consumer_secret, 'secret')
-    RefinerySetting.set(:vimeo_token, 'token')
-    RefinerySetting.set(:vimeo_secret, 'secret')
+    ::Refinery::Setting.set(:vimeo_consumer_key, '12345')
+    ::Refinery::Setting.set(:vimeo_consumer_secret, 'secret')
+    ::Refinery::Setting.set(:vimeo_token, 'token')
+    ::Refinery::Setting.set(:vimeo_secret, 'secret')
   end
   
   it "should return nil if new record" do

@@ -40,7 +40,7 @@ In your _form.html.erb insert this:
 
     <div class='field'>
       <%= f.label "Test Video" -%>
-      <%= render :partial => "/shared/admin/vimeo_picker", :locals => {
+      <%= render :partial => "/refinery/admin/vimeo_picker", :locals => {
             :f => f,
             :field => :test_video_id,
             :vimeo_video => @project.test_video
