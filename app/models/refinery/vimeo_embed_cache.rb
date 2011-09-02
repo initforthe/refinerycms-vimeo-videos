@@ -2,7 +2,7 @@ require 'httparty'
 module Refinery
   class VimeoEmbedCache < ActiveRecord::Base
   
-    set_table_name "vimeo_embed_cache"
+    set_table_name "refinery_vimeo_embed_cache"
   
     belongs_to :vimeo_video
     

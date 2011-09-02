@@ -1,7 +1,9 @@
 require 'vimeo'
-require 'refinery/vimeo-videos/version'
+require 'will_paginate/array'
+require File.expand_path('../refinery/vimeo-videos/version', __FILE__)
+require File.expand_path('../generators/vimeo_videos_generator', __FILE__)
 
-module ::Refinery
+module Refinery
   module VimeoVideos
     
     class << self
@@ -11,8 +13,8 @@ module ::Refinery
       end
     end
     
-    autoload :URLTempfile,            'refinery/vimeo-videos/url_tempfile.rb'
-    autoload :Account,                'refinery/vimeo-videos/account.rb'
+    autoload :URLTempfile,            File.expand_path('../refinery/vimeo-videos/url_tempfile', __FILE__)
+    autoload :Account,                File.expand_path('../refinery/vimeo-videos/account', __FILE__)
     
     class Engine < Rails::Engine
       initializer "init plugin", :after => :set_routes_reloader do |app|
@@ -27,7 +29,7 @@ module ::Refinery
   end
 end
 
-require 'refinery/vimeo-videos/active_record.rb'
+require File.expand_path('../refinery/vimeo-videos/active_record', __FILE__)
 
 module ActiveRecord
   class Base

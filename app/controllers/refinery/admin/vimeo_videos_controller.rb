@@ -65,9 +65,7 @@ module ::Refinery
         end
 
         def paginate_vimeo_videos
-          @vimeo_videos = Kaminari.paginate_array(get_videos_on_vimeo_account)
-                                                      .page(@paginate_page_number ||= params[:page])
-                                                      .per(VimeoVideo.per_page(from_dialog?))
+          @vimeo_videos = get_videos_on_vimeo_account.paginate(:page => (@paginate_page_number ||= params[:page]), :per_page => ::Refinery::VimeoVideo.per_page(from_dialog?))
         end
       
         def ensure_authorized!

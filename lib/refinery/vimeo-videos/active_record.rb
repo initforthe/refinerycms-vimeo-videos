@@ -9,7 +9,7 @@ module Refinery
             if self.new_record?
               self.#{field}_id
             else
-              self.#{field}_id? ? VimeoMetaCache.find_or_create_by_vid(self.#{field}_id) : nil
+              self.#{field}_id? ? ::Refinery::VimeoMetaCache.find_or_create_by_vid(self.#{field}_id) : nil
             end
           end
       
@@ -17,7 +17,7 @@ module Refinery
       
           def cache_vimeo_meta_for_#{field}
             if self.#{field}_id? and self.#{field}_id_changed?
-              VimeoMetaCache.find_or_create_by_vid(self.#{field}_id)
+              ::Refinery::VimeoMetaCache.find_or_create_by_vid(self.#{field}_id)
             end
           end
           protected :cache_vimeo_meta_for_#{field}

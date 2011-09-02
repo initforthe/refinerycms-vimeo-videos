@@ -3,7 +3,7 @@ module Refinery
   
     include ::Refinery::VimeoVideos::Account
   
-    set_table_name "vimeo_meta_cache"
+    set_table_name "refinery_vimeo_meta_cache"
   
     has_many :vimeo_embed_caches, :dependent => :destroy
   
@@ -14,7 +14,7 @@ module Refinery
     validates_presence_of :vid
   
     def embed geometry, options = {}
-      VimeoEmbedCache.embed(self.vid, geometry, options)
+      ::Refinery::VimeoEmbedCache.embed(self.vid, geometry, options)
     end
   
     def url
