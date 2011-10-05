@@ -1,6 +1,6 @@
 module ::Refinery
   module Admin
-    class VimeoAccountController < ::Admin::BaseController
+    class VimeoAccountController < ::Refinery::AdminController
 
       include ::Refinery::VimeoVideos::Account
     
@@ -42,7 +42,7 @@ module ::Refinery
         ::Refinery::Setting.find_by_name('vimeo_token').update_attribute(:value, access_token.token)
         ::Refinery::Setting.find_by_name('vimeo_secret').update_attribute(:value, access_token.secret)
         flash.notice = "You successfully authorized your vimeo account for integration in your backend. You can now start using it."
-        redirect_to refinery_root_path
+        redirect_to main_app.refinery_admin_root_path
     
       end
     

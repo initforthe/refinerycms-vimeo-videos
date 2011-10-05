@@ -2,7 +2,7 @@ class VimeoAuthorizationError < StandardError; end
 
 module ::Refinery
   module Admin
-    class VimeoVideosController < ::Admin::BaseController
+    class VimeoVideosController < ::Refinery::AdminController
     
       include ::Refinery::VimeoVideos::Account
     
