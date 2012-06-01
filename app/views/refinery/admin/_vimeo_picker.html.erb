@@ -17,9 +17,9 @@
   <div class='current_vimeo_video_container'<%= " style='display: none'" if toggle_vimeo_video_display %> style="margin-top: 10px;">
     <a class='current_vimeo_video_link dialog' href="<%= current_vimeo_video_link_href %>"
         data-dialog-width='866' data-dialog-height='510' data-dialog-title='Pick a video...'
-        style='border: 0px' title='<%= current_vimeo_video_title  %>'>
-      <% unless vimeo_video.nil? -%>
-        <%= image_fu vimeo_video.image, ::Refinery::Image.user_image_sizes[thumbnail.to_sym], :class => "brown_border",
+        style='border: 0px' title='<%= current_vimeo_video_title  %>'>      
+      <% if vimeo_video.class != String and vimeo_video.class != Integer and !vimeo_video.nil? -%>
+        <%= image_fu vimeo_video.image, '300x300>', :class => "brown_border",
                      :class => "current_picked_vimeo_video" %>
       <% else -%>
         <img class="current_picked_vimeo_video" src="" alt="" style='display: none' />

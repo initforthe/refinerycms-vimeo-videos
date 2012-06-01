@@ -5,11 +5,11 @@
       <ul>
         <% @vimeo_videos.each do |vimeo_video| -%>
           <li<%= " class='selected'" if @vimeo_video_id == false %>>
-            <%= image_tag vimeo_video["thumbnails"]["thumbnail"].first["_content"], {
+            <%= image_tag vimeo_video["thumbnail_small"], {
                   :tooltip => vimeo_video["title"],
                   :alt => vimeo_video["title"],
                   :title => vimeo_video["title"],
-                  :"data-image" => vimeo_video["thumbnails"]["thumbnail"][1]["_content"],
+                  :"data-image" => vimeo_video["thumbnail_large"],
                   :id => "vimeo_video_#{vimeo_video['id']}",
                   :"data-id" => vimeo_video["id"]} %>
           </li>

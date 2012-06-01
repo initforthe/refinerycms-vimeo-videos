@@ -3,10 +3,7 @@ class VimeoAuthorizationError < StandardError; end
 module ::Refinery
   module Admin
     class VimeoVideosController < ::Refinery::AdminController
-    
-      include ::Refinery::VimeoVideos::Account
-    
-      before_filter :ensure_authorized!
+        
       before_filter :init_dialog
     
       def index
@@ -41,12 +38,7 @@ module ::Refinery
     
       protected
         def get_videos_on_vimeo_account
-          video = ::Vimeo::Advanced::Video.new(
-            account[:consumer_key],
-            account[:consumer_secret],
-            :token => account[:token],
-            :secret => account[:secret])
-          @vimeo_videos = video.get_all(account[:username], {:full_response => true, :sort => 'upload_date'})["videos"]["video"]
+          @vimeo_videos = Vimeo::Simple::User.videos(::Refinery::VimeoVideos.config.vimeo_user_id)
         end
       
         def init_dialog

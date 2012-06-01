@@ -12,6 +12,7 @@ module Refinery
     
     validates_presence_of :configuration
     validates_presence_of :vid
+    validates_presence_of :code
   
     def self.embed vid, geometry, configuration = {}
       configuration.stringify_keys!
@@ -59,7 +60,10 @@ module Refinery
         if self.code.blank? or force  
           # Escape vimeo url and request oembed code
           url = ::CGI::escape("http://vimeo.com/#{self.vid}")
-          response = ::HTTParty.get "http://vimeo.com/api/oembed.xml?url=#{url}&#{YAML.load(self.configuration).to_query}"
+          query = ""
+          query = YAML.load(self.configuration).to_query
+          arr = [url,query].join('&')
+          response = ::HTTParty.get "http://vimeo.com/api/oembed.xml?url=#{arr}"
           self.code = response["oembed"]["html"]
         end
       end

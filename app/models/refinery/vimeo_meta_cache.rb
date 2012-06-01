@@ -1,8 +1,6 @@
 module Refinery
   class VimeoMetaCache < ActiveRecord::Base
-  
-    include ::Refinery::VimeoVideos::Account
-  
+      
     set_table_name "refinery_vimeo_meta_cache"
   
     has_many :vimeo_embed_caches, :dependent => :destroy
@@ -30,14 +28,8 @@ module Refinery
     
       def cache force = false, images = false
         if !self.title? or !self.image_id? or !self.description? or force
-        
-          video_info_request = ::Vimeo::Advanced::Video.new(
-            account[:consumer_key],
-            account[:consumer_secret],
-            :token => account[:token],
-            :secret => account[:secret])
-        
-          video_info = video_info_request.get_info(self.vid)["video"].first
+                  
+          video_info = Vimeo::Simple::Video.info(self.vid).first
         
           # By default omitt image if we already have one.
           # If we force an update, we need to specifically force images as well by
@@ -45,12 +37,7 @@ module Refinery
         
           if images or !image_id?
             # Save fetched image url
-            vimeo_thumb_url = ""
-            (thumbs = video_info["thumbnails"]["thumbnail"]).each_with_index do |thumb, i|
-              vimeo_thumb_url = thumbs[thumbs.size-1-i]["_content"]
-              break unless vimeo_thumb_url =~ /\/defaults\//
-            end
-          
+            vimeo_thumb_url = video_info["thumbnail_large"]
             self.create_image(:image => ::Refinery::VimeoVideos::URLTempfile.new(vimeo_thumb_url))
           end
         
